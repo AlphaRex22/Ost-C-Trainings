@@ -1,0 +1,513 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f3f5f8;
+  color: #17202a;
+}
+
+header {
+  background: #16202a;
+  color: white;
+  padding: 22px max(20px, calc((100% - 1200px) / 2));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 5px;
+  font-size: 27px;
+}
+
+header p {
+  margin: 0;
+  color: #b9c5cf;
+}
+
+main {
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 0 16px 50px;
+}
+
+/* =========================
+   KARTEN
+   ========================= */
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.section-title h2 {
+  margin: 0;
+}
+
+/* =========================
+   FORMULARE / BUTTONS
+   ========================= */
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  border-radius: 9px;
+  border: 1px solid #cdd5dc;
+  padding: 10px 12px;
+}
+
+input,
+select {
+  background: white;
+  min-height: 42px;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 220px;
+}
+
+button,
+.file-button {
+  cursor: pointer;
+  background: #1976d2;
+  color: white;
+  border: 0;
+  font-weight: 650;
+}
+
+button:hover,
+.file-button:hover {
+  filter: brightness(0.94);
+}
+
+.secondary {
+  background: #eef2f6;
+  color: #17202a;
+}
+
+.file-button {
+  display: inline-flex;
+  align-items: center;
+}
+
+.file-button input {
+  display: none;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hint {
+  color: #687580;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* =========================
+   BADGE
+   ========================= */
+
+.badge {
+  background: #e8f1fb;
+  color: #1565c0;
+  padding: 5px 9px;
+  border-radius: 99px;
+  font-weight: 700;
+}
+
+/* =========================
+   SPIELERVERWALTUNG
+   ========================= */
+
+.player-list {
+  margin-top: 15px;
+  display: grid;
+  gap: 8px;
+}
+
+.player-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #f6f8fa;
+  border-radius: 9px;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
+/* Aufklappbarer Bereich */
+
+.player-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  color: #17202a;
+  border: none;
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.player-toggle:hover {
+  filter: none;
+}
+
+.player-management-content {
+  display: none;
+  padding-top: 18px;
+}
+
+.player-management-content.open {
+  display: block;
+}
+
+/* =========================
+   TRAINING / ANWESENHEIT
+   ========================= */
+
+.attendance-grid {
+  display: grid;
+  gap: 8px;
+}
+
+/*
+   Desktop-Aufbau:
+
+   Spielername        Gut | Schlecht | Neutral | Zu spät
+   Abwesend           Kurzfristig abgesagt
+*/
+
+.attendance-row {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  grid-template-rows: auto auto;
+  gap: 7px 15px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f6f8fa;
+}
+
+.player-name {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.absence-buttons {
+  grid-column: 1;
+  grid-row: 2;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 7px;
+}
+
+.performance-buttons {
+  grid-column: 2;
+  grid-row: 1 / 3;
+
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* =========================
+   ALLGEMEINE TRAININGSBUTTONS
+   ========================= */
+
+.attendance-row button {
+  min-width: 105px;
+
+  background: white;
+  color: #25313b;
+
+  border: 1px solid #ccd5dc;
+
+  padding: 10px 12px;
+}
+
+/* Wenn Spieler abwesend ist */
+
+.attendance-row.absent {
+  opacity: 0.72;
+}
+
+/* =========================
+   LEISTUNG
+   ========================= */
+
+.attendance-row button.active.present {
+  background: #1976d2;
+  color: white;
+}
+
+.attendance-row button.active.good {
+  background: #2e9b5f;
+  color: white;
+}
+
+.attendance-row button.active.neutral {
+  background: #607d8b;
+  color: white;
+}
+
+.attendance-row button.active.bad {
+  background: #d9534f;
+  color: white;
+}
+
+/* =========================
+   ABWESEND
+   ========================= */
+
+.attendance-row button.absent-btn {
+  min-width: 150px;
+
+  background: #fff4f3;
+
+  color: #b52d28;
+
+  border: 1px solid #e6b4b1;
+}
+
+.attendance-row button.absent-btn.active {
+  background: #d9534f;
+  color: white;
+}
+
+/* =========================
+   KURZFRISTIG ABGESAGT
+   ========================= */
+
+.short-cancel-btn {
+  background: #fff3e0 !important;
+  color: #b85c00 !important;
+  border: 1px solid #f0b35a !important;
+}
+
+.short-cancel-btn.active {
+  background: #e67e22 !important;
+  color: white !important;
+}
+
+/* =========================
+   ZU SPÄT
+   ========================= */
+
+.late-btn {
+  background: #fff8e1 !important;
+  color: #8a6500 !important;
+  border: 1px solid #e6c85c !important;
+}
+
+.late-btn.active {
+  background: #e0ad00 !important;
+  color: white !important;
+}
+
+/* =========================
+   REGELN
+   ========================= */
+
+.rules {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  margin-bottom: 15px;
+
+  color: #53616c;
+}
+
+/* =========================
+   TABELLE / RANKING
+   ========================= */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e7ebee;
+  text-align: left;
+}
+
+th {
+  color: #5b6973;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.rank {
+  font-weight: 800;
+}
+
+.score {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* =========================
+   TRAINING LÖSCHEN
+   ========================= */
+
+.delete-training-btn {
+  background: #e74c3c;
+  color: white;
+
+  border: none;
+
+  padding: 10px 12px;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-weight: 650;
+}
+
+.delete-training-btn:hover {
+  background: #c0392b;
+}
+
+/* =========================
+   LEERE BEREICHE
+   ========================= */
+
+.empty {
+  padding: 20px;
+  color: #687580;
+  text-align: center;
+}
+
+/* =========================
+   TOAST
+   ========================= */
+
+.toast {
+  position: fixed;
+
+  right: 20px;
+  bottom: 20px;
+
+  background: #16202a;
+  color: white;
+
+  padding: 12px 16px;
+
+  border-radius: 9px;
+
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  transition: 0.2s;
+
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 760px) {
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /*
+     Auf dem Handy wird jeder Spieler
+     untereinander aufgebaut:
+     
+     Spielername
+     Abwesend / kurzfristig abgesagt
+     Gut / Schlecht / Neutral / Zu spät
+  */
+
+  .attendance-row {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+
+    gap: 8px;
+  }
+
+  .player-name {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .absence-buttons {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .performance-buttons {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .attendance-row button {
+    min-width: 0;
+  }
+
+  .absence-buttons,
+  .performance-buttons {
+    width: 100%;
+  }
+}
