@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trainings-Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>⚽ Trainings-Tracker</h1>
+      <p>Letzte 20 Trainings · Anwesenheit & Trainingsleistung</p>
+    </div>
+    <div class="header-actions">
+      <button id="exportBtn" class="secondary">Daten exportieren</button>
+      <label class="file-button secondary">Daten importieren
+        <input id="importInput" type="file" accept=".json">
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="section-title">
+        <h2>Training anlegen</h2>
+      </div>
+      <div class="form-row">
+        <input id="trainingDate" type="date">
+        <button id="addTrainingBtn">Training hinzufügen</button>
+      </div>
+      <p class="hint">Es werden automatisch nur die letzten 20 Trainings für die Wertung berücksichtigt.</p>
+    </section>
+
+    <section class="card player-management">
+  <button id="playerToggle" class="player-toggle">
+    <span>👥 Spielerverwaltung</span>
+    <span>
+      <span id="playerCount" class="badge"></span>
+      <span id="playerArrow">▼</span>
+    </span>
+  </button>
+
+  <div id="playerManagementContent" class="player-management-content">
+    <div class="form-row">
+      <input id="playerName" type="text" placeholder="Name des Spielers">
+      <button id="addPlayerBtn">Spieler hinzufügen</button>
+    </div>
+
+    <div id="playerList" class="player-list"></div>
+  </div>
+</section>
+
+    <section class="card">
+      <div class="section-title">
+        <div>
+          <h2>Training erfassen</h2>
+          <p id="selectedTrainingLabel" class="hint">Noch kein Training ausgewählt.</p>
+        </div>
+        <select id="trainingSelect"></select>
+      </div>
+      <div id="attendanceGrid" class="attendance-grid"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <div>
+          <h2>Rangliste</h2>
+          <p class="hint">Berechnung über die letzten 20 Trainings</p>
+        </div>
+      </div>
+      <div class="rules">
+        <span>❌ Abwesend = <b>0</b></span>
+        <span>➖ Neutral = <b>1,00</b></span>
+        <span>🟢 Gut = <b>1,20</b></span>
+        <span>🔴 Schlecht = <b>0,80</b></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Spieler</th>
+              <th>Anwesend</th>
+              <th>Quote</th>
+              <th>Ø Faktor</th>
+              <th>Wertung</th>
+            </tr>
+          </thead>
+          <tbody id="rankingBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
